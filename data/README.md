@@ -1,60 +1,42 @@
-🧪 Notebooks d'analyse & entraînement
+📊 Dataset client retail
 
-Ce dossier contient tous les notebooks utilisés pour :
+Ce dossier contient :
 
-l’exploration préliminaire du dataset,
+customers.csv : dataset utilisé pour l'analyse et l'entraînement
 
-l’EDA (analyse exploratoire),
+README.md : documentation
 
-la préparation de la target,
+📌 Description du dataset
 
-la création du pipeline sklearn,
+Chaque ligne correspond à un client avec :
 
-l’entraînement et l’évaluation des modèles,
+Variable	Description
+customer_id	Identifiant unique client
+age	Âge du client
+gender	Sexe (Male/Female)
+income	Revenu annuel
+city	Ville du client
+category	Catégorie d’achat principale
+amount	Montant total dépensé
+frequency	Nombre d’achats
+last_purchase_days_ago	Nombre de jours depuis le dernier achat
+churn (optionnel)	Variable présente avant construction target
+🎯 Target utilisée pour le modèle
 
-la génération du modèle final sauvegardé.
+La variable cible a été créée à partir de :
 
-📌 Contenu du dossier
-1. EDA.ipynb
+target = (last_purchase_days_ago < 60).astype(int)
 
-Inspection globale du dataset
 
-Étude de la distribution des variables
+➡ 1 = client actif
+➡ 0 = client inactif
 
-Analyse des corrélations
+🚀 Usage du dataset
 
-Nettoyage & preprocessing simple
+EDA dans le notebook
 
-Construction de la target
+Préparation du pipeline ML
 
-Visualisations (histogrammes, boxplots, heatmap)
+Entraînement du modèle final
 
-2. Modèle ML
-
-Dans ce notebook :
-
-✔ Définition des colonnes numériques & catégorielles
-✔ Création du ColumnTransformer
-✔ Pipelines ML : Logistic Regression, Random Forest, Gradient Boosting
-✔ Évaluation via classification_report
-✔ Sauvegarde du modèle final :
-
-joblib.dump(rf_model, "../model/model.pkl")
-
-🧠 À quoi servent ces notebooks ?
-
-Ils permettent de :
-
-✔ Documenter la démarche analytique
-✔ Permettre la reproductibilité
-✔ Tester plusieurs modèles avant déploiement
-✔ Comprendre le comportement du pipeline avant API + Docker
-
-🚀 Étape suivante
-
-Le modèle final sauvegardé est ensuite utilisé par l'API FastAPI dans le dossier :
-
-/api/
-   main.py
-   schema.py
-   utils.py
+Déploiement via API FastAPI
